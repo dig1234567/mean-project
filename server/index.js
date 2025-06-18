@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const authRouter = require("./router").auth;
 const courseRouter = require("./router").course;
-const dotenv = require("dotenv");
 const passport = require("passport");
 require("./config/passport")(passport);
 const cors = require("cors");
