@@ -1,28 +1,32 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const authRouter = require("./router").auth;
 const courseRouter = require("./router").course;
-const dotenv = require("dotenv");
-dotenv.config();
 const passport = require("passport");
 require("./config/passport")(passport);
 const cors = require("cors");
 
-mongoose
-  .connect("mongodb://localhost:27017/database")
-  .then(() => {
-    console.log("資料庫成功連接...");
-  })
-  .catch((e) => {
-    console.log(e);
-  });
+console.log("MONGO_URI:", process.env.MONGO_URI);
 
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("後端 API 運作中 🚀");
+});
+
 app.use("/api/user", authRouter);
 // 任何到此Router都會執行此函數
 // course route應該被jwt保護
@@ -33,6 +37,18 @@ app.use(
   courseRouter
 );
 
-app.listen(8080, () => {
-  console.log("Server is running Port 8080...");
+const path = require("path");
+
+// ===== 加入這段來服務 React 的 build =====
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client1/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client1/build/index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

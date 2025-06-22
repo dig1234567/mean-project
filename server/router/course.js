@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 router.get("/query/:_id", async (req, res) => {
   let { _id } = req.params;
   try {
-    let data = await Course.find({ _id }.exec());
+    let data = await Course.find({ _id }).exec();
     return res.send({
       message: "你所需要的資料如下",
       data,
