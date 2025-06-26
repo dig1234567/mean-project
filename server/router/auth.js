@@ -66,9 +66,13 @@ router.post("/login", async (req, res) => {
 });
 
 // 刪除所有資料Router
-router.get("/delete", async (req, res) => {
-  let SuccessDelete = await User.deleteMany({});
-  return res.send("資料成功刪除...");
+router.delete("/delete/all", async (req, res) => {
+  try {
+    await User.deleteMany({});
+    return res.send("所有使用者資料已成功刪除...");
+  } catch (e) {
+    return res.status(500).send("刪除失敗...");
+  }
 });
 
 module.exports = router;
