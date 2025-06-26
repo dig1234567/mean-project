@@ -51,7 +51,7 @@ router.post("/", async (req, res) => {
 });
 
 // 刪除特定資訊
-router.delete("/:_id", async (req, res) => {
+router.delete("/delete/:_id", async (req, res) => {
   let { _id } = req.params;
   try {
     let deleteData = await Course.findOne({ _id }).exec();
