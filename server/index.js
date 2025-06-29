@@ -12,7 +12,7 @@ const cors = require("cors");
 console.log("MONGO_URI:", process.env.MONGO_URI);
 
 mongoose
-  .connect(process.env.MONGO_URI 
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB 已連接"))
   .catch((err) => console.error("MongoDB 連線失敗", err));
 // middleware
