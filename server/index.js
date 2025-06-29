@@ -12,12 +12,9 @@ const cors = require("cors");
 console.log("MONGO_URI:", process.env.MONGO_URI);
 
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+  .connect(process.env.MONGO_URI 
+  .then(() => console.log("MongoDB 已連接"))
+  .catch((err) => console.error("MongoDB 連線失敗", err));
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
