@@ -21,12 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // 👉 設定 Express 提供 React 的 build 靜態檔案
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "../client1/build")));
 
 
 // 👇 所有未配對的路由都導向 React 的 index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client1/build', 'index.html'));
 });
 
 app.get("/", (req, res) => {
