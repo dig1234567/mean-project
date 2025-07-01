@@ -44,7 +44,6 @@ app.use(
   courseRouter
 );
 
-const path = require("path");
 
 // ===== 加入這段來服務 React 的 build =====
 if (process.env.NODE_ENV === "production") {
