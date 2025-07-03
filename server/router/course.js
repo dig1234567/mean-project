@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
 // 透過id查詢課程
 router.get("/query/:_id", async (req, res) => {
-  let { _id } = req.params.id;
+  let { _id } = req.params;
   try {
    let data = await Course.find({ _id }).exec();
     return res.send({
