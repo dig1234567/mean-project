@@ -19,7 +19,10 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
   const handleButton = async () => {
     try {
       let response = await AuthService.login(email, password);
-      localStorage.setItem("user", JSON.stringify(response.data));
+     localStorage.setItem("user", JSON.stringify({
+  user: response.data.user,
+  token: response.data.token
+}));
       window.alert("登入成功, 您即將被導向到個人資料頁面....");
       navigate("/profile");
       setCurrentUser(AuthService.getCurrentuser());
