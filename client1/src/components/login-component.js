@@ -30,6 +30,7 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
 
   return (
     <div style={{ padding: "3rem" }} className="col-md-12">
+  {message && <div className="alert alert-danger">{message}</div>}
       <div>
         <div className="form-group">
           <label htmlFor="email">電子信箱：</label>
