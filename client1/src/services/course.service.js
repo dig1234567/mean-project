@@ -1,8 +1,8 @@
 import axios from "axios";
 const API_URL =
   process.env.NODE_ENV === "production"
-    ? "https://mean-project-1-1x9r.onrender.com/api/user"
-    : "http://localhost:10000/api/user";
+    ? "https://mean-project-1-1x9r.onrender.com/api/course"
+    : "http://localhost:10000/api/course";
 
 class CourseService {
   // Post資料
